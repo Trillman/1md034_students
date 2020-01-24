@@ -13,7 +13,7 @@ Before you submit the different parts of your lab, make sure that your project f
 
 ## 02 HTML
 
-- [ ] Ensure the website loads when opening http://localhost:3000/
+- [X] Ensure the website loads when opening http://localhost:3000/
 
 Create an index.html file which contains:
 - [ ] A title
