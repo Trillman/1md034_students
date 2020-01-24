@@ -47,20 +47,20 @@
                     <ul>
                       <li>750 kCal</li>
                       <li>Osten innehåller laktos</li>
-                      <li>Innehåller gluten</li>
+                      <li>Brödet innehåller gluten</li>
                     </ul>
                   </td>
                   <td>
                     <ul>
-                      <li>Friterad kalkonburgare</li>
+                      <li>600 kCal</li>
                       <li>Laktosfri</li>
                       <li>Glutenfritt bröd</li>
                     </ul>
                   </td>
                   <td>
                     <ul>
-                      <li>Två lager kött</li>
-                      <li>Ost (innehåller laktos)</li>
+                      <li>1800 kCal</li>
+                      <li>Osten innehåller laktos</li>
                       <li>Brödet innehåller gluten</li>
                     </ul>
                   </td>
@@ -72,7 +72,33 @@
 
         <section>
           <h2>Kundinformation</h2>
-          <p>Här anger du kontakt- och betalningsinformation</p>
+            <p>Här anger du leverans- och betalningsinformation</p>
+          <h3>Leveransinformation:</h3>
+            <p>
+              <label for="fullname">För- och efternamn</label><br>
+              <input type="text" id=fullname name="name" required="required" placeholder="För- och efternamn" />
+            </p>
+            <p>
+              <label for="email">E-mailadress</label><br>
+              <input type="email" id=email name="em" required="required" placeholder="E-mailadress" />
+            </p>
+            <p>
+              <label for="street">Gatunamn</label><br>
+              <input type="text" id=street name="st" required="required" placeholder="Gatunamn" />
+            </p>
+            <p>
+              <label for="house">Husnummer</label><br>
+              <input type="number" id=house name="hnmbr" required="required" placeholder="Husnummer" />
+            </p>
+            <p>
+              <label for="payment">Betalningsmetod</label><br>
+              <select id="payment" name="pm">
+                <option>kredit- eller bankkort</option>
+                <option>swish</option>
+                <option>faktura</option>
+                <option>direktbetalning</option>
+              </select>
+            </p>
         </section>
 
       </main>
