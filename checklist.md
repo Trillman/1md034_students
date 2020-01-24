@@ -18,7 +18,7 @@ Before you submit the different parts of your lab, make sure that your project f
 Create an index.html file which contains:
 - [X] A title
 - [X] A main headline and two section headlines
-- [ ] Semantic tags that correspond to the parts of your page
+- [X] Semantic tags that correspond to the parts of your page
 - [ ] A section to select burgers that contains at least three items. Each item has at least:
 	- [ ] A name
 	- [ ] An image
