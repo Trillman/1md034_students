@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head link rel="stylesheet" type="text/css" href="style.css">
         <title>Ordering burgers</title>
         <meta charset="utf-8"/>
     </head>
@@ -98,6 +98,18 @@
                 <option>faktura</option>
                 <option>direktbetalning</option>
               </select>
+            </p>
+            <p>
+              <label for="gender">Kön</label><br>
+              <form>
+                <input type="radio" name="gender" value="male">Man<br>
+                <input type="radio" name="gender" value="female">Kvinna<br>
+                <input type="radio" name="gender" value="non-binary">Icke-binär<br>
+                <input type="radio" name="gender" value="undisclosed" checked>Vill ej säga<br>
+              </form>
+            </p>
+            <p>
+              <input type="submit" value="Lägg order" />
             </p>
         </section>
 
