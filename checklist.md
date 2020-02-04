@@ -39,7 +39,7 @@ Add the following style/behaviour to your website (mostly in style.css but also 
 - [X] Define a base line font for your site by putting the style rule on "body"
 - [X] Define a larger base line font size
 - [X] A CSS rule to make the allergy information bold
-- [ ] Define text and background color for one of your two sections (burger selection and customer information)
+- [X] Define text and background color for one of your two sections (burger selection and customer information)
 - [ ] Create an empty style definition for the section with unchanged text and background
 - [ ] Change the cursor and background when hovering over the order button
 - [ ] Define a table width and center it
