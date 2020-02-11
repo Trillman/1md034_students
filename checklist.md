@@ -52,8 +52,8 @@ Add the following style/behaviour to your website (mostly in style.css but also 
 
 ## 04 JavaScript and Vue
 
-- [ ] Create js_script.js and vue_script.js
-- [ ] Link to js_script.js, vue_script.js as well as vue.js in index.html
+- [X] Create js_script.js and vue_script.js
+- [X] Link to js_script.js, vue_script.js as well as vue.js in index.html
 - [ ] Add a menuItem constructor with relevant properties to js_script.js
 - [ ] Also use your menuItem constructor to instantiate a total of five burgers in js_script.js
 - [ ] Add the Vue instance example code to vue_script.js 
