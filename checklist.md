@@ -65,7 +65,7 @@ Add the following style/behaviour to your website (mostly in style.css but also 
 - [X] Remove the menuItem constructor and the instantiation of your five burgers from js_script.js
 - [X] Update vue_script.js to get the burgers from menu.js instead
 - [X] Create an event listener in js_script.js connected to your order button
-- [ ] Add a function to js_script.js connected to the order button in index.html that collects the user's input from the text boxes, the gender and all items on the order (that have the checkbox checked) into an array and also prints out the contents to your console 
+- [X] Add a function to js_script.js connected to the order button in index.html that collects the user's input from the text boxes, the gender and all items on the order (that have the checkbox checked) into an array and also prints out the contents to your console 
 - [ ] Comment out your previous event listener and use Vue's corresponding functionality in vue_script.js and index.html to react on button presses
 - [ ] Use Vue's model binding to collect the user's input
 - [ ] Use Vue to print out a summary of the user's input to the bottom of your page when the order button is pressed
