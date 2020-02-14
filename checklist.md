@@ -75,8 +75,8 @@ Add the following style/behaviour to your website (mostly in style.css but also 
 
 ## 05 Messaging
 
-- [ ] Exchange the fields for the customer's address with the interactive map
-- [ ] Copy the parts of deli-very.js that you need to make the map work into vue_script.js
+- [X] Exchange the fields for the customer's address with the interactive map
+- [X] Copy the parts of deli-very.js that you need to make the map work into vue_script.js
 - [ ] Check that your map works and adjust the coordinates if the dots don't show up in the right place.
 - [ ] Separate addOrder into one function that controls what should happen when a user clicks in the map (displayOrder) and rewrite addOrder to control what should happen when the user clicks the order button
 - [ ] Remove the socket.on bindings to "currentQueue" and "initialize", and temporarily fix getNext to assign locally generated orderId's when an order is sent
