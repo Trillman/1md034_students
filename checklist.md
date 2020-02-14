@@ -70,7 +70,7 @@ Add the following style/behaviour to your website (mostly in style.css but also 
 - [X] Use Vue's model binding to collect the user's input
 - [ ] Use Vue to print out a summary of the user's input to the bottom of your page when the order button is pressed
 - [X] Add a checkbox to every burger on your menu when it is generated
-- [ ] Include what burgers the user has checked in the order summary
+- [X] Include what burgers the user has checked in the order summary
 
 
 ## 05 Messaging
