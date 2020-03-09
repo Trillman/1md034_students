@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+      <title>Ordering burgers</title>
+      <meta charset="utf-8"/>
+      <script type="text/javascript" src="js/menu.js"></script>
+      <script src=src="js/vue_script.js" defer></script>
+      <script src="https://vuejs.org/js/vue.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+  </head>
+
+  <body>
+    <main id="main">
+
+      <!-- Header -->
+      <header>
+        <img id="header" src="https://images.deliveryhero.io/image/mjam/restaurant/restaurant/header_image/crosslisting/burger-bros.jpg?width=1920&height=351">
+        <h1>Välkommen till BurgerOnline</h1>
+      </header>
+
+      <!-- Burgersection -->
+      <section id="burgers">
+        <h2>Här väljer du hamburgare</h2>
+        <p>Välj hamburgare</p>
+
+        <div class="wrapper" id="wrap">
+          <div v-for="menuItem in copiedMenu">
+
+            <div class="box eld">
+              <div v-if="menuItem.nme === 'Eldburgaren'">
+                <input type="checkbox" id="eldCheck" v-model="burger">
+                <label for="eldCheck">{{ menuItem.name }}</label>
+                <img v-bind:src="menuItem.img" height="250" width="250">
+                <ul>
+                  <li>{{ menuItem.kCal }}</li>
+                  <li>{{ menuItem.allergy }}</li>
+                </ul>
+              </div> <!-- if -->
+            </div> <!-- eld -->
+
+            <div class="box kalkon">
+              <div v-if="menuItem.name === 'Kalkonburgaren'">
+                <input type="checkbox" id="kalkCheck" v-model="burger">
+                <label for="kalkCheck">{{ menuItem.name }}</label>
+                <img v-bind:src="menuItem.img" height="250" width="250">
+                <ul>
+                  <li>{{ menuItem.kCal }}</li>
+                  <li>{{ menuItem.allergy }}</li>
+                </ul>
+              </div> <!-- if -->
+            </div> <!-- kalkon -->
+
+            <div class="box ost">
+              <div v-if="menuItem.name === 'Dubbelburgare med ost'">
+                <input type="checkbox" id="ostCheck" v-model="burger">
+                <label for="ostCheck">{{ menuItem.name }}</label>
+                <img v-bind:src="menuItem.img" height="250" width="250">
+                <ul>
+                  <li>{{ menuItem.kCal }}</li>
+                  <li>{{ menuItem.allergy }}</li>
+                </ul>
+              </div> <!-- if -->
+            </div> <!-- ost -->
+
+            <div class="box fisk">
+              <div v-if="menuItem.name === 'Fiskburgare'">
+                <input type="checkbox" id="fiskCheck" v-model="burger">
+                <label for="fiskCheck">{{ menuItem.name }}</label>
+                <img v-bind:src="menuItem.img" height="250" width="250">
+                <ul>
+                  <li>{{ menuItem.kCal }}</li>
+                  <li>{{ menuItem.allergy }}</li>
+                </ul>
+              </div> <!-- if -->
+            </div> <!-- fisk -->
+
+            <div class="box beans">
+              <div v-if="menuItem.name === 'Bönburgare'">
+                <input type="checkbox" id="beanCheck" v-model="burger">
+                <label for="beanCheck">{{ menuItem.name }}</label>
+                <img v-bind:src="menuItem.img" height="250" width="250">
+                <ul>
+                  <li>{{ menuItem.kCal }}</li>
+                  <li>{{ menuItem.allergy }}</li>
+                </ul>
+              </div> <!-- if -->
+            </div> <!-- beans -->
+
+          </div> <!-- menu -->
+        </div> <!-- wrap class -->
+
+      </section> <!-- id=burgers -->
+
+      <!-- Customer section -->
+      <section id="customer">
+        <h2>Kundinformation</h2>
+        <p>Här anger du leverans- och betalningsinformation</p>
+        <h3>Leveransinformation</h3>
+
+        <div id="customerInfoDiv">
+          <form id="customerInfoForm">
+            <p>
+              <label for="fullname">För- och efternamn<label><br>
+              <input v-model="name" type="text" id="name" placeholder="För- och efternamn">
+            </p>
+            <p>
+              <label for="email">E-mailadress</label><br>
+              <input v-model="email" type="email" id="email" placeholder="E-mailadress">
+            </p>
+            <p>
+              <label for="gender">Kön</label><br>
+
+              <input type="radio" v-model="gender" name="gender" value="male" id="male">
+              <label for="male">Man</label>
+              <input type="radio" v-model="gender" name="gender" value="female" id="female">
+              <label for="female">Kvinna</label>
+              <input type="radio" v-model="gender" name="gender" value="non-binary" id="non-binary">
+              <label for="non-binary">Icke-binär</label><br>
+              <input type="radio" v-model="gender" name="gender" value="undisclosed" id="undisclosed">
+              <label for="undisclosed">Vill ej säga</label><br>
+
+            </p>
+            <p>
+              <label for="payment">Betalningsmetod</label><br>
+              <select v-model="payment" id="payment">
+                <option v-for="option in options">
+                  {{ option.pay }}
+                </option>
+              </select> <!-- payment method -->
+            </p>
+          </form> <!-- customerInfoForm -->
+
+          <p>
+            <button v-on:click="markDone(name, email, gender, payment)">Lägg order</button>
+          </p>
+        </div> <!-- customerInfoDiv -->
+      </section> <!-- id=customer -->
+
+
+    </main>
+  </body>
+</html>
