@@ -1,122 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-      <link rel="stylesheet" type="text/css" href="css/style2.css">
-        <title>Ordering burgers</title>
-        <meta charset="utf-8"/>
-    </head>
-    <body>
-      <main>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+      <title>Ordering burgers</title>
+      <meta charset="utf-8"/>
+      <script type="text/javascript" src="js/menu.js"></script>
+      <script src="https://vuejs.org/js/vue.js" defer></script>
+      <script src="js/vue_script.js" defer></script>
+      <script src="/socket.io/socket.io.js"></script>
+  </head>
+
+  <body>
+    <main id="main">
+
+      <!-- Header -->
+      <header>
+        <img id="header" src="https://images.deliveryhero.io/image/mjam/restaurant/restaurant/header_image/crosslisting/burger-bros.jpg?width=1920&height=351">
         <h1>Välkommen till BurgerOnline</h1>
+      </header>
 
-        <section>
-          <h2>Här väljer du hamburgare</h2>
-            <p>Välj hamburgare</p>
+      <!-- Burgersection -->
+      <section id="burgers">
+        <h2>Här väljer du hamburgare</h2>
+        <p>Välj hamburgare</p>
 
-            <table>
-              <tbody>
-                <tr>
-                  <td><div align="center"><b>Eldburgaren</b></div></td>
-                  <td><div align="center"><b>Kalkonburgaren</b></div></td>
-                  <td><div align="center"><b>Dubbelburgare med ost</b></div></td>
-                </tr>
-                <tr>
-                  <td>
-                    <figure>
-                      <div align="center">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.sxRbHlAsy-zqHEipClOzIgAAAA%26pid%3DApi&f=1" width="200">
-                      </div>
-                    </figure>
-                  </td>
-                  <td>
-                    <figure>
-                      <div align="center">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Yqek6-kRcAl6p8Mo6DTt3AHaHa%26pid%3DApi&f=1" width="200">
-                      </div>
-                    </figure>
-                  </td>
-                  <td>
-                    <figure>
-                      <div align="center">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-i2e3XPfVwYw%2FV9GgRgn2Y3I%2FAAAAAAAAxeM%2FIh2LoXrSQr0NBgFKLeupxYNzwGZXBv1VwCLcB%2Fs400%2FHardees-Classic-Double-Cheeseburger.jpg&f=1&nofb=1" width="200">
-                      </div>
-                    </figure>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <ul>
-                      <li>750 kCal</li>
-                      <li>Osten innehåller laktos</li>
-                      <li>Brödet innehåller gluten</li>
-                    </ul>
-                  </td>
-                  <td>
-                    <ul>
-                      <li>600 kCal</li>
-                      <li>Laktosfri</li>
-                      <li>Glutenfritt bröd</li>
-                    </ul>
-                  </td>
-                  <td>
-                    <ul>
-                      <li>1800 kCal</li>
-                      <li>Osten innehåller laktos</li>
-                      <li>Brödet innehåller gluten</li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <div class="wrapper" id="wrap">
 
-        </section>
+            <div class="box" v-for="menuItem in copiedMenu">
 
-        <section>
-          <h2>Kundinformation</h2>
-            <p>Här anger du leverans- och betalningsinformation</p>
-          <h3>Leveransinformation:</h3>
+              <input type="checkbox" v-bind:id="menuItem.name" v-model="burger">
+              <label v-bind:for="menuItem.name">{{ menuItem.name }}</label>
+              <img v-bind:src="menuItem.img" height="250" width="250">
+              <ul>
+                <li>{{ menuItem.kCal }}</li>
+                <li>{{ menuItem.allergy }}</li>
+              </ul>
+
+            </div>
+
+        </div> <!-- wrap class -->
+
+      </section> <!-- id=burgers -->
+
+      <!-- Customer section -->
+      <section id="customer">
+        <h2>Kundinformation</h2>
+        <p>Här anger du leverans- och betalningsinformation</p>
+        <h3>Leveransinformation</h3>
+
+        <div id="customerInfoDiv">
+          <form id="customerInfoForm">
             <p>
-              <label for="fullname">För- och efternamn</label><br>
-              <input type="text" id=fullname name="name" required="required" placeholder="För- och efternamn" />
+              <label for="fullname">För- och efternamn<label><br>
+              <input v-model="name" type="text" id="name" placeholder="För- och efternamn">
             </p>
             <p>
               <label for="email">E-mailadress</label><br>
-              <input type="email" id=email name="em" required="required" placeholder="E-mailadress" />
-            </p>
-            <p>
-              <label for="street">Gatunamn</label><br>
-              <input type="text" id=street name="st" required="required" placeholder="Gatunamn" />
-            </p>
-            <p>
-              <label for="house">Husnummer</label><br>
-              <input type="number" id=house name="hnmbr" required="required" placeholder="Husnummer" />
-            </p>
-            <p>
-              <label for="payment">Betalningsmetod</label><br>
-              <select id="payment" name="pm">
-                <option>kredit- eller bankkort</option>
-                <option>swish</option>
-                <option>faktura</option>
-                <option>direktbetalning</option>
-              </select>
+              <input v-model="email" type="email" id="email" placeholder="E-mailadress">
             </p>
             <p>
               <label for="gender">Kön</label><br>
-              <form>
-                <input type="radio" name="gender" value="male">Man<br>
-                <input type="radio" name="gender" value="female">Kvinna<br>
-                <input type="radio" name="gender" value="non-binary">Icke-binär<br>
-                <input type="radio" name="gender" value="undisclosed" checked>Vill ej säga<br>
-              </form>
+
+              <input type="radio" v-model="gender" name="gender" value="male" id="male">
+              <label for="male">Man</label><br>
+              <input type="radio" v-model="gender" name="gender" value="female" id="female">
+              <label for="female">Kvinna</label><br>
+              <input type="radio" v-model="gender" name="gender" value="non-binary" id="non-binary">
+              <label for="non-binary">Icke-binär</label><br>
+              <input type="radio" v-model="gender" name="gender" value="undisclosed" id="undisclosed">
+              <label for="undisclosed">Vill ej säga</label><br>
+
             </p>
             <p>
-              <input type="submit" value="Lägg order" />
+              <label for="payment">Betalningsmetod</label><br>
+              <select v-model="payment" id="payment">
+                <option v-for="option in options">
+                  {{ option.pay }}
+                </option>
+              </select> <!-- payment method -->
             </p>
-        </section>
+          </form> <!-- customerInfoForm -->
 
-      </main>
-      <footer>
-        &copy 2020 Hypotetiska Burgare AB
-      </footer>
-    </body>
+          <p>
+            <button v-on:click="markDone(name, email, gender, payment)">Lägg order</button>
+          </p>
+        </div> <!-- customerInfoDiv -->
+      </section> <!-- id=customer -->
+
+
+    </main>
+  </body>
 </html>
