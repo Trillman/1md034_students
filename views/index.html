@@ -74,16 +74,16 @@
             <p>
               <label for="payment">Betalningsmetod</label><br>
               <select v-model="payment" id="payment">
-                <option v-for="option in payment" v-bind:value="option.text">
-                  {{ option.text }}
+                <option v-for="option in payment" v-bind:value="option.value">
+                  {{ option.value }}
                 </option>
               </select> <!-- payment method -->
             </p>
-          </form> <!-- customerInfoForm -->
 
           <p>
-            <button v-on:click="markDone(menuItem, name, email, gender, option)">Lägg order</button>
+            <button v-on:click="markDone" type="button">Lägg order</button>
           </p>
+          </form> <!-- customerInfoForm -->
         </div> <!-- customerInfoDiv -->
       </section> <!-- id=customer -->
 

@@ -7,7 +7,7 @@ const mainObj = new Vue({
   el: '#main',
   data: {
     copiedMenu: menu, /* #burgers */
-    menuItem: [], /* #checked */
+    //menuItems: [], /* #checked */
     name: "",
     email: "",
     /* street: "",
@@ -20,15 +20,36 @@ const mainObj = new Vue({
       { value: 'direktbetalning'} /*, value: 'direktbetalning' */
     ],
     customer: [], /* #order */
-    orderInfo: [] /* #order */
+    order: [] /* #order */
   },
   methods: {
     printString: function() { /* #burgers */
       console.log(this.copiedMenu + menu);
     },
-    markDone: function(menuItem, name, email, gender, payment) { /* street, number */
+    markDone: function() { /* street, number */
       console.log("Clicked!");
 
+      /*var info = document.getElementsByName('customerInfoForm');
+      for (var i = 0; i < info.length; i++) {
+        customer.push(info[i]);
+      }*/
+
+      this.customer.push(this.name);
+      this.customer.push(this.email);
+      console.log("this dot customer", this.customer);
+
+      var g = document.getElementsByName('gender'); //document.getElementsByName('gender').checked?
+      for (var j = 0; j < g.length; j++) {
+        if (selected[j].checked) {
+          customer.push(selected[j]);
+        }
+      }
+
+
+      console.log(customer);
+      //console.log(order);
+
+/*
       this.menuItem = [menuItem];
       this.name = name;
       this.email = email;
@@ -41,7 +62,7 @@ const mainObj = new Vue({
       console.log(gender);
       console.log(payment);
       console.log(menuItem);
-
+*/
       /* this.street = street; this.number = number; */
 
 
