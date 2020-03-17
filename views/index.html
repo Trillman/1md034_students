@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <main id="main">
+    <main id='main'>
 
       <!-- Header -->
       <header>
@@ -28,7 +28,7 @@
 
             <div class="box" v-for="menuItem in copiedMenu">
 
-              <input type="checkbox" v-bind:id="menuItem.name" v-model="burger">
+              <input type="checkbox" v-bind:id="menuItem.name" value="menuItem.name" v-model="burger">
               <label v-bind:for="menuItem.name">{{ menuItem.name }}</label>
               <img v-bind:src="menuItem.img" height="250" width="250">
               <ul>
@@ -74,15 +74,15 @@
             <p>
               <label for="payment">Betalningsmetod</label><br>
               <select v-model="payment" id="payment">
-                <option v-for="option in options">
-                  {{ option.pay }}
+                <option v-for="option in payment" v-bind:value="option.text">
+                  {{ option.text }}
                 </option>
               </select> <!-- payment method -->
             </p>
           </form> <!-- customerInfoForm -->
 
           <p>
-            <button v-on:click="markDone(name, email, gender, payment)">Lägg order</button>
+            <button v-on:click="markDone(menuItem, name, email, gender, option)">Lägg order</button>
           </p>
         </div> <!-- customerInfoDiv -->
       </section> <!-- id=customer -->
