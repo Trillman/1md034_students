@@ -13,6 +13,7 @@ const mainObj = new Vue({
     /* street: "",
     number: "", */
     gender: "",
+    payMethod: "",
     payment: [ /* #options */
       { value: 'kredit- eller bankkort'}, /*, value: 'kredit- eller bankkort' */
       { value: 'swish'}, /* , value: 'swish' */
@@ -26,7 +27,7 @@ const mainObj = new Vue({
     printString: function() { /* #burgers */
       console.log(this.copiedMenu + menu);
     },
-    markDone: function() { /* street, number */
+    markDone: function() {
       console.log("Clicked!");
 
       /*var info = document.getElementsByName('customerInfoForm');
@@ -46,18 +47,12 @@ const mainObj = new Vue({
         }
       }
 
-      console.log(this.customer);
+      this.customer.push(this.payMethod);
 
-/*
-      var g = document.getElementsByName('gender'); //document.getElementsByName('gender').checked?
-      for (var j = 0; j < g.length; j++) {
-        if (selected[j].checked) {
-          customer.push(selected[j]);
-        }
-      }
-*/
+      console.log("payMethod", this.payMethod);
 
-      console.log(customer);
+      console.log("customer", this.customer);
+
       //console.log(order);
 
 /*
@@ -66,13 +61,6 @@ const mainObj = new Vue({
       this.email = email;
       this.gender = gender;
       this.payment = payment;
-
-
-      console.log(name);
-      console.log(email);
-      console.log(gender);
-      console.log(payment);
-      console.log(menuItem);
 */
       /* this.street = street; this.number = number; */
 
