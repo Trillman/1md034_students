@@ -36,15 +36,26 @@ const mainObj = new Vue({
 
       this.customer.push(this.name);
       this.customer.push(this.email);
-      console.log("this dot customer", this.customer);
+      //this.customer.push(this.gender);
 
+
+      var gen = document.getElementsByName('gender');
+      for (var i = 0; i < gen.length; i++) {
+        if (gen[i].checked) {
+          this.customer.push(this.gender);
+        }
+      }
+
+      console.log(this.customer);
+
+/*
       var g = document.getElementsByName('gender'); //document.getElementsByName('gender').checked?
       for (var j = 0; j < g.length; j++) {
         if (selected[j].checked) {
           customer.push(selected[j]);
         }
       }
-
+*/
 
       console.log(customer);
       //console.log(order);
