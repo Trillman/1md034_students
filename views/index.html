@@ -61,13 +61,13 @@
             <p>
               <label for="gender">Kön</label><br>
 
-              <input type="radio" v-model="gender" name="gender" value="male" id="male">
+              <input type="radio" v-model="gender" name="gender" value="Man" id="male">
               <label for="male">Man</label><br>
-              <input type="radio" v-model="gender" name="gender" value="female" id="female">
+              <input type="radio" v-model="gender" name="gender" value="Kvinna" id="female">
               <label for="female">Kvinna</label><br>
-              <input type="radio" v-model="gender" name="gender" value="non-binary" id="non-binary">
+              <input type="radio" v-model="gender" name="gender" value="Icke-binär" id="non-binary">
               <label for="non-binary">Icke-binär</label><br>
-              <input type="radio" v-model="gender" name="gender" value="undisclosed" id="undisclosed">
+              <input type="radio" v-model="gender" name="gender" value="Vill ej säga" id="undisclosed">
               <label for="undisclosed">Vill ej säga</label><br>
 
             </p>
@@ -83,6 +83,21 @@
           <p>
             <button v-on:click="markDone" type="button">Lägg order</button>
           </p>
+
+          <div id="orderConfirmation" v-if="submitted">
+            Kundinformation:
+            <ul>
+              <li>Namn: {{ customer.name }}</li>
+              <li>E-mail: {{ customer.email }}</li>
+              <li>Kön: {{ customer.gender }}</li>
+              <li>Betalningsmetod: {{ customer.payMethod }}</li>
+            </ul>
+            Orderinformation:
+            <ul>
+              <li v-for="burger in order"> {{ burger }}</li>
+            </ul>
+          </div> <!-- order information -->
+
           </form> <!-- customerInfoForm -->
         </div> <!-- customerInfoDiv -->
       </section> <!-- id=customer -->

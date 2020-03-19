@@ -6,8 +6,7 @@ const socket = io();
 const mainObj = new Vue({
   el: '#main',
   data: {
-    copiedMenu: menu, /* #burgers */
-    //menuItems: [], /* #checked */
+    copiedMenu: menu,
     name: "",
     email: "",
     /* street: "",
@@ -15,35 +14,33 @@ const mainObj = new Vue({
     gender: "",
     payMethod: "",
     payment: [ /* #options */
-      { value: 'kredit- eller bankkort'}, /*, value: 'kredit- eller bankkort' */
-      { value: 'swish'}, /* , value: 'swish' */
-      { value: 'faktura'}, /* , value: 'faktura' */
-      { value: 'direktbetalning'} /*, value: 'direktbetalning' */
+      { value: 'kredit- eller bankkort'},
+      { value: 'swish'},
+      { value: 'faktura'},
+      { value: 'direktbetalning'}
     ],
-    customer: [], /* #order */
-    items: [],
-    order: []
-    //,
-    //order: [] /* #order */
+    customer: {name: "", email: "", gender: "", payMethod: ""},
+    order: [],
+    submitted: false
   },
   methods: {
-    printString: function() { /* #burgers */
+    printString: function() {
       console.log(this.copiedMenu + menu);
     },
     markDone: function() {
       console.log("Clicked!");
 
-      this.customer.push(this.name);
-      this.customer.push(this.email);
+      this.customer.name = this.name;
+      this.customer.email = this.email;
 
       var gen = document.getElementsByName('gender');
       for (var i = 0; i < gen.length; i++) {
         if (gen[i].checked) {
-          this.customer.push(this.gender);
+          this.customer.gender = this.gender;
         }
       }
 
-      this.customer.push(this.payMethod);
+      this.customer.payMethod = this.payMethod;
 
       menu.forEach(item => {
         if (item.checked) {
@@ -51,9 +48,7 @@ const mainObj = new Vue({
         }
       })
 
-      console.log("customer", this.customer);
-
-      console.log("order", this.order);
+      this.submitted = true;
 
     },
   }
