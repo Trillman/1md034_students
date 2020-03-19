@@ -28,7 +28,7 @@
 
             <div class="box" v-for="menuItem in copiedMenu">
 
-              <input type="checkbox" v-bind:id="menuItem.name" value="menuItem.name" v-model="burger">
+              <input type="checkbox" v-model="menuItem.checked">
               <label v-bind:for="menuItem.name">{{ menuItem.name }}</label>
               <img v-bind:src="menuItem.img" height="250" width="250">
               <ul>

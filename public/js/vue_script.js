@@ -21,7 +21,10 @@ const mainObj = new Vue({
       { value: 'direktbetalning'} /*, value: 'direktbetalning' */
     ],
     customer: [], /* #order */
-    order: [] /* #order */
+    items: [],
+    order: []
+    //,
+    //order: [] /* #order */
   },
   methods: {
     printString: function() { /* #burgers */
@@ -30,15 +33,8 @@ const mainObj = new Vue({
     markDone: function() {
       console.log("Clicked!");
 
-      /*var info = document.getElementsByName('customerInfoForm');
-      for (var i = 0; i < info.length; i++) {
-        customer.push(info[i]);
-      }*/
-
       this.customer.push(this.name);
       this.customer.push(this.email);
-      //this.customer.push(this.gender);
-
 
       var gen = document.getElementsByName('gender');
       for (var i = 0; i < gen.length; i++) {
@@ -49,32 +45,15 @@ const mainObj = new Vue({
 
       this.customer.push(this.payMethod);
 
-      console.log("payMethod", this.payMethod);
+      menu.forEach(item => {
+        if (item.checked) {
+          this.order.push(item.name);
+        }
+      })
 
       console.log("customer", this.customer);
 
-      //console.log(order);
-
-/*
-      this.menuItem = [menuItem];
-      this.name = name;
-      this.email = email;
-      this.gender = gender;
-      this.payment = payment;
-*/
-      /* this.street = street; this.number = number; */
-
-
-      /*
-      var name = document.getElementById("fullname").value;
-      var email = document.getElementById("email").value;
-      var payment = document.getElementById("payment").value;
-      var gender = document.getElementById("gender").value;
-
-      this.customer = [name, email, payment, gender];
-
-      console.log(customer);
-      */
+      console.log("order", this.order);
 
     },
   }
