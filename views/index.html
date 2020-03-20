@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css">
       <title>Ordering burgers</title>
       <meta charset="utf-8"/>
@@ -79,6 +80,16 @@
                 </option>
               </select> <!-- payment method -->
             </p>
+
+            <div class="view-box">
+              <div id="dots" v-on:click="addOrder">
+                  <div
+                    v-for="(order, key) in orders"
+                    v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+                    {{key}}
+                  </div>
+              </div>
+            </div> <!-- map -->
 
           <p>
             <button v-on:click="markDone" type="button">Lägg order</button>

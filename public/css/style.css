@@ -1,0 +1,118 @@
+
+body {
+  font-size: 2em;
+  font-family: arial;
+  margin: 0 auto;
+}
+
+section {
+  margin: 70px 50px;
+}
+
+header {
+  margin: 70px 50px;
+  height: 230px;
+  overflow: hidden;
+}
+
+h1 {
+  position: absolute;
+  margin-top: -250px;
+  padding-left: 15px;
+}
+
+img#header {
+  opacity: 0.5;
+  width: 100%;
+  height: auto;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: auto auto auto auto auto;/* (om JS används) */
+  background-color: #000000;
+  color: #ffffff;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px dashed #ffffff;
+  padding: 15px;
+}
+
+  .box {
+    background-color: inherit;
+    color: inherit;
+    border-radius: 5px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .eld {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .kalkon {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .ost {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .fisk {
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  .beans {
+    grid-column: 5;
+    grid-row: 1;
+  }
+
+#allergy {
+  font-weight: bold;
+}
+
+#customer {
+  border: 2px dashed #000000;
+  padding: 15px;
+}
+
+.view-box {
+	width: 90%;
+	height: 50vh;
+	margin: 1em auto;
+	overflow: scroll;
+	border: 1px solid rgba(0,0,0,0.4);
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+#dots {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	background: url(/img/polacks.jpg);
+	background-repeat: no-repeat;
+	width:1920px;
+	height: 1078px;
+	cursor: crosshair;
+}
+
+#dots div {
+	position: absolute;
+	background: black;
+	color: white;
+	border-radius: 10px;
+	width:20px;
+	height:20px;
+	text-align: center;
+}
+
+input[type=submit]:hover {
+  cursor: pointer;
+  background-color: #f045f1;
+}

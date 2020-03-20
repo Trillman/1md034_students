@@ -21,7 +21,24 @@ const mainObj = new Vue({
     ],
     customer: {name: "", email: "", gender: "", payMethod: ""},
     order: [],
-    submitted: false
+    submitted: false,
+    orders: {},
+  },
+  created: function() {
+    /* When the page is loaded, get the current orders stored on the server.
+     * (the server's code is in app.js) */
+    socket.on('initialize', function(data) {
+      this.orders = data.orders;
+    }.bind(this));
+
+    /* Whenever an addOrder is emitted by a client (every open map.html is
+     * a client), the server responds with a currentQueue message (this is
+     * defined in app.js). The message's data payload is the entire updated
+     * order object. Here we define what the client should do with it.
+     * Spoiler: We replace the current local order object with the new one. */
+    socket.on('currentQueue', function(data) {
+      this.orders = data.orders;
+    }.bind(this));
   },
   methods: {
     printString: function() {
@@ -51,32 +68,6 @@ const mainObj = new Vue({
       this.submitted = true;
 
     },
-  }
-});
-
-/* Messaging part */
-const vm = new Vue({
-  el: '#dots',
-  data: {
-    orders: {},
-  },
-  created: function() {
-    /* When the page is loaded, get the current orders stored on the server.
-     * (the server's code is in app.js) */
-    socket.on('initialize', function(data) {
-      this.orders = data.orders;
-    }.bind(this));
-
-    /* Whenever an addOrder is emitted by a client (every open map.html is
-     * a client), the server responds with a currentQueue message (this is
-     * defined in app.js). The message's data payload is the entire updated
-     * order object. Here we define what the client should do with it.
-     * Spoiler: We replace the current local order object with the new one. */
-    socket.on('currentQueue', function(data) {
-      this.orders = data.orders;
-    }.bind(this));
-  },
-  methods: {
     getNext: function() {
       /* This function returns the next available key (order number) in
        * the orders object, it works under the assumptions that all keys
@@ -107,127 +98,3 @@ const vm = new Vue({
     },
   },
 });
-
-
-
-
-
-/* gammalt Task 4:
-
-const burg = new Vue({
-  el: '#burgers',
-  data: {
-    copiedMenu: menu,
-  },
-  methods: {
-    printString: function () {
-      console.log(this.copiedMenu + menu);
-  }
-  }
-})
-
-
-const checked = new Vue({
-  el: "#check",
-  data: {
-    checkedBurgers: []
-  }
-})
-
-
-const pay = new Vue({
-  el: "#payment",
-  data: {
-    options: [
-      { text: 'kredit- eller bankkort', value: 'kredit- eller bankkort' },
-      { text: 'swish', value: 'swish' },
-      { text: 'faktura', value: 'faktura' },
-      { text: 'direktbetalning', value: 'direktbetalning' }
-    ]
-  }
-})
-
-
-
-let customer = [];
-let order = [];
-var orderInfo = {customer: [], order: []};
-
-const orderButton = new Vue({
-  el: "#order",
-  data: orderInfo,
-  methods: {
-    markDone: function(){
-      console.log("Button clicked!");
-
-      var name = document.getElementById("fullname").value;
-      var email = document.getElementById("email").value;
-      //var street = document.getElementById("street").value;
-      //var house = document.getElementById("house").value;
-      var payment = document.getElementById("payment").value;
-      var gender = document.getElementById("gender").value;
-
-      //let customer = [name, email, street, house, payment, gender]
-      this.customer = [name, email, payment, gender]; //street, house,
-
-      console.log(this.customer);
-
-      if (document.getElementById("eldCheck").checked) {
-        this.order.push("Eldburgaren");
-      }
-      if (document.getElementById("kalkCheck").checked) {
-        this.order.push("Kalkonburgaren");
-      }
-      if (document.getElementById("ostCheck").checked) {
-        this.order.push("Dubbelburgare med ost");
-      }
-      if (document.getElementById("fiskCheck").checked) {
-        this.order.push("Fiskburgaren");
-      }
-      if (document.getElementById("beanCheck").checked) {
-        this.order.push("Bönburgaren");
-      }
-
-      console.log(this.order);
-
-    }
-  }
-})
- */
-
-
-/* gammalt, buggigt: */
-/*const eldVue = new Vue({
-  el: '#eld',
-  data: {
-    eldInfo: eld.info(),
-  }
-})
-
-const kalkVue = new Vue({
-  el: '#kalkon',
-  data: {
-    kalkonInfo: kalkon.info(),
-  }
-})
-
-const ostVue = new Vue({
-	el: '#ost',
-  data: {
-  	ostInfo: ost.info(),
-  }
-})
-
-const fiskVue = new Vue({
-	el: '#fisk',
-  data: {
-  	fiskInfo: fisk.info(),
-  }
-})
-
-const beansVue = new Vue({
-	el: '#beans',
-  data: {
-  	beansInfo: beans.info(),
-  }
-})*/
