@@ -44,7 +44,7 @@ const mainObj = new Vue({
     printString: function() {
       console.log(this.copiedMenu + menu);
     },
-    markDone: function() {
+    /*markDone: function() {
       console.log("Clicked!");
 
       this.customer.name = this.name;
@@ -67,7 +67,7 @@ const mainObj = new Vue({
 
       this.submitted = true;
 
-    },
+    },*/
     getNext: function() {
       /* This function returns the next available key (order number) in
        * the orders object, it works under the assumptions that all keys
@@ -83,7 +83,7 @@ const mainObj = new Vue({
        * The click event object contains among other things different
        * coordinates that we need when calculating where in the map the click
        * actually happened. */
-     let offset = {
+     /*let offset = {
         x: event.currentTarget.getBoundingClientRect().left,
         y: event.currentTarget.getBoundingClientRect().top,
       };
@@ -95,6 +95,28 @@ const mainObj = new Vue({
         },
         orderItems: ['Beans', 'Curry'],
       });
+      */
+      this.customer.name = this.name;
+      this.customer.email = this.email;
+
+      var gen = document.getElementsByName('gender');
+      for (var i = 0; i < gen.length; i++) {
+        if (gen[i].checked) {
+          this.customer.gender = this.gender;
+        }
+      }
+
+      this.customer.payMethod = this.payMethod;
+
+      menu.forEach(item => {
+        if (item.checked) {
+          this.burgers.push(item.name);
+        }
+      })
+
+      this.submitted = true;
+
+
     },
 
     displayOrder: function(event) {
@@ -114,16 +136,6 @@ const mainObj = new Vue({
       console.log(this.order.details.x);
       console.log(this.order.details.y);
 
-      /*socket.emit('displayOrder', {
-        orderId: this.getNext(),
-        details: {
-          x: event.clientX - 10 - offset.x,
-          y: event.clientY - 10 - offset.y,
-        },
-        orderItems: ['Beans', 'Curry'],
-      });
-      */
-      //console.log(this.orders);
     },
   },
 });
