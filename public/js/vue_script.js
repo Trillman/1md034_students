@@ -18,7 +18,7 @@ const mainObj = new Vue({
       { value: 'faktura'},
       { value: 'direktbetalning'}
     ],
-    customer: {name: "", email: "", gender: "", payMethod: ""},
+    customer: {name: "", email: "", gender: "", payMethod: "", x: 0, y: 0},
     burgers: [],
     submitted: false,
     orders: {},
@@ -100,6 +100,9 @@ const mainObj = new Vue({
           this.burgers.push(item.name);
         }
       })
+
+      this.customer.x = this.order.details.x;
+      this.customer.y = this.order.details.y;
 
       this.submitted = true;
 
