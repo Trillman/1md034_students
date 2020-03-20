@@ -2,7 +2,6 @@
 const socket = io();
 
 
-/* Task 4- */
 const mainObj = new Vue({
   el: '#main',
   data: {
@@ -20,9 +19,10 @@ const mainObj = new Vue({
       { value: 'direktbetalning'}
     ],
     customer: {name: "", email: "", gender: "", payMethod: ""},
-    order: [],
+    burgers: [],
     submitted: false,
     orders: {},
+    order: { details: {x: 0, y:0} }
   },
   created: function() {
     /* When the page is loaded, get the current orders stored on the server.
@@ -61,7 +61,7 @@ const mainObj = new Vue({
 
       menu.forEach(item => {
         if (item.checked) {
-          this.order.push(item.name);
+          this.burgers.push(item.name);
         }
       })
 
@@ -83,7 +83,7 @@ const mainObj = new Vue({
        * The click event object contains among other things different
        * coordinates that we need when calculating where in the map the click
        * actually happened. */
-      let offset = {
+     let offset = {
         x: event.currentTarget.getBoundingClientRect().left,
         y: event.currentTarget.getBoundingClientRect().top,
       };
@@ -95,6 +95,35 @@ const mainObj = new Vue({
         },
         orderItems: ['Beans', 'Curry'],
       });
+    },
+
+    displayOrder: function(event) {
+      /* When you click in the map, a click event object is sent as parameter
+       * to the function designated in v-on:click (i.e. this one).
+       * The click event object contains among other things different
+       * coordinates that we need when calculating where in the map the click
+       * actually happened. */
+      let offset = {
+        x: event.currentTarget.getBoundingClientRect().left,
+        y: event.currentTarget.getBoundingClientRect().top,
+      };
+
+      this.order.details.x = event.clientX - 10 - offset.x;
+      this.order.details.y = event.clientY - 10 - offset.y;
+
+      console.log(this.order.details.x);
+      console.log(this.order.details.y);
+
+      /*socket.emit('displayOrder', {
+        orderId: this.getNext(),
+        details: {
+          x: event.clientX - 10 - offset.x,
+          y: event.clientY - 10 - offset.y,
+        },
+        orderItems: ['Beans', 'Curry'],
+      });
+      */
+      //console.log(this.orders);
     },
   },
 });

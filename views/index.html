@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
       <title>Ordering burgers</title>
       <meta charset="utf-8"/>
@@ -82,11 +82,10 @@
             </p>
 
             <div class="view-box">
-              <div id="dots" v-on:click="addOrder">
+              <div id="dots" v-on:click="displayOrder">
                   <div
-                    v-for="(order, key) in orders"
                     v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
-                    {{key}}
+                    T <!-- {{key}} -->
                   </div>
               </div>
             </div> <!-- map -->
@@ -105,7 +104,7 @@
             </ul>
             Orderinformation:
             <ul>
-              <li v-for="burger in order"> {{ burger }}</li>
+              <li v-for="burger in burgers"> {{ burger }}</li>
             </ul>
           </div> <!-- order information -->
 
