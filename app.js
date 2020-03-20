@@ -23,17 +23,13 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'views/index.html'));
 });
 // Serve map.html as /map
-/*app.get('/map', function(req, res) {
+app.get('/map', function(req, res) {
   res.sendFile(path.join(__dirname, 'views/map.html'));
-});*/
+});
 // Serve dispatcher.html as /dispatcher
-/*app.get('/dispatcher', function(req, res) {
+app.get('/dispatcher', function(req, res) {
   res.sendFile(path.join(__dirname, 'views/dispatcher.html'));
-});*/
-// Serve index_bugfix.html as /bugfix
-/*app.get('/bugfix', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/index_bugfix.html'));
-});*/
+});
 
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary

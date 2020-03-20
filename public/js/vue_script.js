@@ -22,23 +22,8 @@ const mainObj = new Vue({
     burgers: [],
     submitted: false,
     orders: {},
-    order: { details: {x: 0, y:0} }
-  },
-  created: function() {
-    /* When the page is loaded, get the current orders stored on the server.
-     * (the server's code is in app.js) */
-    socket.on('initialize', function(data) {
-      this.orders = data.orders;
-    }.bind(this));
-
-    /* Whenever an addOrder is emitted by a client (every open map.html is
-     * a client), the server responds with a currentQueue message (this is
-     * defined in app.js). The message's data payload is the entire updated
-     * order object. Here we define what the client should do with it.
-     * Spoiler: We replace the current local order object with the new one. */
-    socket.on('currentQueue', function(data) {
-      this.orders = data.orders;
-    }.bind(this));
+    order: { details: {x: 0, y:0} },
+    lastOrder: 0
   },
   methods: {
     printString: function() {
@@ -72,12 +57,14 @@ const mainObj = new Vue({
       /* This function returns the next available key (order number) in
        * the orders object, it works under the assumptions that all keys
        * are integers. */
-      let lastOrder = Object.keys(this.orders).reduce(function(last, next) {
+      /*let lastOrder = Object.keys(this.orders).reduce(function(last, next) {
         return Math.max(last, next);
       }, 0);
+      return lastOrder + 1;*/
+      let lastOrder = 0;
       return lastOrder + 1;
     },
-    addOrder: function(event) {
+    addOrder: function() {
       /* When you click in the map, a click event object is sent as parameter
        * to the function designated in v-on:click (i.e. this one).
        * The click event object contains among other things different
@@ -116,7 +103,11 @@ const mainObj = new Vue({
 
       this.submitted = true;
 
-
+      socket.emit('addOrder', {
+        orderId: this.getNext(),
+        details: this.order.details,
+        orderItems: this.burgers,
+      });
     },
 
     displayOrder: function(event) {
